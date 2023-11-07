@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Reacr, {useEffect} from 'react'
 import "./sidebar.css"
 import Logo from '../../assets/logo.png'
 
 
 const Sidebar = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const setDarkMode = ()=>{
         document.querySelector("body").setAttribute('data-theme', 'dark')
     }
@@ -15,8 +17,37 @@ const Sidebar = () => {
         if(document.querySelector("body").getAttribute('data-theme')==='light') setDarkMode();
         else setLightMode();
     }
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            // Check the screen width and toggle the sidebar based on the condition
+            if (window.innerWidth <= 789) {
+                setIsSidebarOpen(false);
+            } else {
+                setIsSidebarOpen(true);
+            }
+        };
+
+        // Add an event listener to handle window resize
+        window.addEventListener('resize', handleResize);
+
+        // Initial check for the sidebar state
+        handleResize();
+
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
   return (
-    <aside className='aside'>
+    <div>
+    {window.innerWidth <= 768 && (
+        <div className="icon-menu" onClick={toggleSidebar}></div>
+    )}
+    <aside className={`aside ${isSidebarOpen ? 'open' : ''}`}>
         <a href="#home" className="nav_logo">
             <img src={Logo} alt="" />
         </a>
@@ -57,6 +88,7 @@ const Sidebar = () => {
             </span>
         </div>
     </aside>
+    </div>
   )
 }
 
