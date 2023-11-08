@@ -209,4 +209,10 @@ section {
     .skills__name {
         font-size: 10px;
     }
+    .about__description__short {
+        display: block;
+        margin-bottom: 1rem;
+        text-align: justify;
+        color: black;
+    }
 }
