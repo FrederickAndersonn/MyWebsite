@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import Reacr, {useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import "./sidebar.css"
 import Logo from '../../assets/logo.png'
 
