@@ -19,9 +19,12 @@ section {
     color: var(--first-color);
 }
 
+
 .work__container {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.875rem;
+    overflow-y: auto ;
+    height: 60vh;
 }
 
 .work__card {
